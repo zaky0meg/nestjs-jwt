@@ -1,13 +1,22 @@
 FROM node:16-alpine
 
+# Set the working directory
 WORKDIR /app
 
-ADD package.json /app/package.json
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
-RUN npm install
+# Install the dependencies
+RUN npm ci
 
-ADD . /app
+# Copy the rest of the application files
+COPY . .
 
+# Build the application
+RUN npm run build
+
+# Expose the port that the application runs on
 EXPOSE 3000
 
-RUN npm start
+# Start the application
+CMD ["npm", "start"]
