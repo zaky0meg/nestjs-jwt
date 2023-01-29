@@ -5,4 +5,8 @@ export class AppService {
   getHello(): string {
     return 'Hello World! from my pc';
   }
+
+  zak(){
+    return 'just an other route';
+  }
 }
