@@ -20,6 +20,5 @@ export class AppController {
     @Param('id') id : string
   ){
       return "hak swal7ek : w haka" + id ;
-      
   }
 }

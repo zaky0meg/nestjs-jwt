@@ -15,6 +15,10 @@ COPY . .
 # Build the application
 RUN npm run build
 
+
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
 # Expose the port that the application runs on
 EXPOSE 3000
 
