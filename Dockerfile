@@ -1,23 +1,18 @@
 FROM node:16-alpine
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /user/src/app
 
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
-
-# Install the dependencies
-RUN npm ci
-
-# Copy the rest of the application files
 COPY . .
+ 
+# RUN npm config set registry http://registry.npmjs.org/
 
-# Build the application
+RUN npm install
+
 RUN npm run build
+ 
+USER node
 
-
-# Expose the port that the application runs on
 EXPOSE 3000
-
-# Start the application
-CMD [ "yarn", "start" ]
+ 
+CMD ["npm", "run", "start:prod"]
